@@ -206,8 +206,11 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
       }
     ]
   },
+ ];
+
+ export const thirdItems: GroupedOption[] = [
   {
-    name: '特徴',
+   name: '特徴',
     options: [
       {
         label: 'AutoFelx SF 305x PINK/BLACK',
@@ -420,6 +423,230 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
+ export const fourthItems: GroupedOption[] = [
+  {
+    name: 'es_option[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: '高反発加工代金',
+        value: '604865',
+        price: '59800円'
+      }
+    ]
+  }
+ ];
+
+ export const fifthItems: GroupedOption[] = [
+  {
+    name: 'es_simple_attr_sel[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: 'ルール適合以上',
+        value: '0'
+      },
+      {
+        label: 'ルール適合以内',
+        value: '1'
+      }
+    ]
+  }
+ ];
+
+ export const sixthItems: GroupedOption[] = [
+  {
+    name: 'es_simple_attr_sel[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: '25m/s~27m/s',
+        value: '0'
+      },
+      {
+        label: '28m/s~30m/s',
+        value: '1'
+      },
+      {
+        label: '31m/s~33m/s',
+        value: '2'
+      },
+      {
+        label: '34m/s~36m/s',
+        value: '3'
+      },
+      {
+        label: '37m/s~39m/s',
+        value: '4'
+      },
+      {
+        label: '40m/s~42m/s',
+        value: '5'
+      },
+      {
+        label: '43m/s~45m/s',
+        value: '6'
+      },
+      {
+        label: '46m/s~48m/s',
+        value: '7'
+      }
+    ]
+  }
+ ];
+
+ export const seventhItems: GroupedOption[] = [
+  {
+    name: 'es_simple_attr_sel[]',
+    options: [
+      {
+       label: '選択してください',
+       value: '', 
+      },
+      {
+        label: '右用',
+        value: '0'
+      },
+      {
+        label: '左用',
+        value: '1'
+      }
+    ]
+  }
+ ];
+
+ export const eighthItems: GroupedOption[] = [
+  {
+    name: 'es_option[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: '加工しない',
+        value: '633971',
+        price: '+0円'
+      },
+      {
+        label: '加工する',
+        value: '633972',
+        price: '+29150円'
+      }
+    ]
+  }
+ ];
+
+ export const ninthItems: GroupedOption[] = [
+  {
+    name: 'es_option[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: '装着しない',
+        value: '633979',
+        price: '+0円'
+      },
+      {
+        label: 'TourLockPro 6g',
+        value: '633980',
+        price: '+2200円'
+      },
+      {
+        label: 'TourLockPro 8g',
+        value: '633981',
+        price: '+2200円'
+      },
+      {
+        label: 'TourLockPro 10g',
+        value: '633982',
+        price: '+2200円'
+      },
+      {
+        label: 'TourLockPro 12g',
+        value: '633983',
+        price: '+2200円'
+      },
+      {
+        label: 'TourLockPro 14g',
+        value: '633984',
+        price: '+2350円'
+      },
+      {
+        label: 'TourLockPro 16g',
+        value: '633985',
+        price: '+2350円'
+      },
+      {
+        label: 'TourLockPro 20g',
+        value: '633986',
+        price: '+2450円'
+      },
+      {
+        label: 'TourLockPro 25g',
+        value: '633987',
+        price: '+2600円'
+      },
+      {
+        label: 'TourLockPro 30g',
+        value: '633988',
+        price: '+2600円'
+      }
+    ]
+  }
+ ];
+
+ export const tenthItems: GroupedOption[] = [
+  {
+    name: 'es_option[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: '加工しない',
+        value: '633973',
+        price: '+0円'
+      },
+      {
+        label: '加工する',
+        value: '633974',
+        price: '+5500円'
+      }
+    ]
+  }
+ ];
+
+ export const eleventhItems: GroupedOption[] = [
+  {
+    name: 'es_option[]',
+    options: [
+      {
+        label: '選択してください',
+        value: ''
+      },
+      {
+        label: 'クラブ組み立て工賃',
+        value: '633994',
+        price: '+4400円'
+      }
+    ]
+  }
+ ];
+
 const fmdata: DynForm = {
   title: 'Form 1',
   action: '',
@@ -438,6 +665,61 @@ const fmdata: DynForm = {
           label: 'シャフト',
           options: secondItems,
           info:  'メモ：シャフトはセット割引に含まれません。'
+        },
+        {
+          name: 'grips',
+          label: 'グリップ',
+          options: thirdItems,
+          info: 'メモ：シャフトはセット割引に含まれません。'
+        },
+        {
+          name: 'Kouhanpatsu',
+          label: '高反発加工',
+          options: fourthItems,
+          discount: 20
+        },
+        {
+          name: 'TuneUp Repair Guide',
+          label: 'TuneUp加工方法',
+          options: fifthItems
+        },
+        {
+          name: 'Average Head Speed',
+          label: '平均ヘッドスピード',
+          options: sixthItems
+        },
+        {
+          name: 'Left/Right',
+          label: '右用/左用',
+          options: seventhItems
+        },
+        {
+          name: 'Black Face',
+          label: 'ブラックフェース加工',
+          options: eighthItems,
+          discount: 0,
+          info: 'メモ：ブラックフェース加工はセット割引に含まれません。'
+        },
+        {
+          name: 'Counter-weight Options',
+          label: 'カウンターウエイト (オプション)',
+          options: ninthItems,
+          discount: 0,
+          info: 'メモ：カウンターウエイトはセット割引に含まれません。'
+        },
+        {
+          name: 'Head and Sound Adjustment Options',
+          label: 'ヘッド内調整・消音加工 (オプション加工)',
+          options: tenthItems,
+          discount: 0,
+          info: 'メモ：ヘッド内調整・消音加工はセット割引に含まれません。'
+        },
+        {
+          name: 'Club Assembly Charge',
+          label: 'クラブ組み立て工賃',
+          options: eleventhItems,
+          discount: 0,
+          info: 'メモ：クラブ組み立て工賃はセット割引に含まれません。'
         }
       ]
     }
