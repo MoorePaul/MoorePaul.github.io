@@ -1,10 +1,12 @@
 <script lang="ts">
-	import * as Form from '$lib/components/ui/form';
 	import { Input } from '$lib/components/ui/input';
+	import { Label } from '$lib/components/ui/label';
 
 	type Props = { label?: string };
 	const { label }: Props = $props();
 </script>
 
-{#if label}<Form.Label>{label}</Form.Label>{/if}
-<Input />
+<div class="flex flex-col gap-1">
+  {#if label}<Label>{label}</Label>{/if}
+  <Input />
+</div>

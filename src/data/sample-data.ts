@@ -661,7 +661,7 @@ export const fmdata: DynForm = {
           name: 'shafts',
           label: 'シャフト',
           options: secondItems,
-          info:  'メモ：シャフトはセット割引に含まれません。'
+          info: 'メモ：シャフトはセット割引に含まれません。'
         },
         {
           type: 'select',
@@ -726,8 +726,23 @@ export const fmdata: DynForm = {
           options: eleventhItems,
           discount: 0,
           info: 'メモ：クラブ組み立て工賃はセット割引に含まれません。'
+        },
+        {
+          type: 'input',
+          name: 'Name',
+          label: 'Name'
+        },
+        {
+          type: 'input',
+          name: 'Email',
+          label: 'Email'
+        },
+        {
+          type: 'input',
+          name: 'Phone-Number',
+          label: 'Phone Number'
         }
       ]
     }
   ]
-}
+};

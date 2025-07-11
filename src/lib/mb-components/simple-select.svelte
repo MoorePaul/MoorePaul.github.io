@@ -8,12 +8,12 @@
 	const { items, label }: Props = $props();
 
   let sel1Val = $state("");
-  const sel1Content = $derived((isGrouped(items) ? items[0].options.find(i => i.value === sel1Val)?.label : items[0].label) ?? 'Choose one');
+  const sel1Content = $derived((isGrouped(items) ? items[0].options.find(i => i.value === sel1Val)?.label : items.find(i => i.value === sel1Val)?.label) ?? 'Choose one');
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col gap-1">
 {#if label}
-  <Label class="mt-4 mb-1">{label}</Label>
+  <Label>{label}</Label>
 {/if}
 <Select.Root type="single" name="sel1" bind:value={sel1Val}>
   <Select.Trigger class="w-full">
