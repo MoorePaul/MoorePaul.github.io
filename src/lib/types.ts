@@ -30,11 +30,19 @@ export type GroupedOption = {
   options: Option[];
 };
 
-export type SelectData = FormControl & {
+export type SelectData = {
+  type: 'select';
+  name: string;
+  label?: string;
+  info?: string;
   discount?: number;
-  options: GroupedOption[];
+  options: GroupedOption[] | Option[];
 };
 
-export type InputData = FormControl & {
+export type InputData = {
+  type: 'input';
+  name: string;
+  label?: string;
+  info?: string;
   rows?: number;
 };

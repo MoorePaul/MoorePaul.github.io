@@ -1,6 +1,6 @@
 <script lang="ts">
 	import '../app.css';
-	import { appData } from '../data/data.svelte';
+	import { appData, fmdata } from '../data/data.svelte';
 
 	let { children } = $props();
   const handleMessage = (event: MessageEvent) => {
@@ -12,8 +12,7 @@
 
       else if (event.data) {
         console.log(`HTML Component received a message: ${event.data}`);
-        //document.getElementById("form").innerHTML = event.data;
-        appData.html = event.data;
+        fmdata.form = JSON.parse(event.data);
       }
   }
 </script>

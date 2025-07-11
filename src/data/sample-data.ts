@@ -1,29 +1,24 @@
-import type { DynForm, GroupedOption, SelectData } from "$lib/types";
+import type { DynForm, GroupedOption, Option, SelectData } from "$lib/types";
 
- export const items: GroupedOption[] = [
+const items: Option[] = [
   {
-    name: 'ヘッド',
-    options: [
-      {
-        label: 'ロフト 9.0度',
-        value: '633924',
-        price: '107800円'
-      },
-      {
-        label: 'ロフト 10.0度',
-        value: '633925',
-        price: '107800円'
-      },
-      {
-        label: 'ロフト 12.0度',
-        value: '633926',
-        price: '107800円'
-      }
-    ]
+    label: 'ロフト 9.0度',
+    value: '633924',
+    price: '107800円'
+  },
+  {
+    label: 'ロフト 10.0度',
+    value: '633925',
+    price: '107800円'
+  },
+  {
+    label: 'ロフト 12.0度',
+    value: '633926',
+    price: '107800円'
   }
- ];
+];
 
- export const secondItems: GroupedOption[] = [
+ const secondItems: GroupedOption[] = [
   {
     name: '特徴',
     options: [
@@ -208,7 +203,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   },
  ];
 
- export const thirdItems: GroupedOption[] = [
+ const thirdItems: GroupedOption[] = [
   {
    name: '特徴',
     options: [
@@ -423,7 +418,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
- export const fourthItems: GroupedOption[] = [
+ const fourthItems: GroupedOption[] = [
   {
     name: 'es_option[]',
     options: [
@@ -440,7 +435,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
- export const fifthItems: GroupedOption[] = [
+ const fifthItems: GroupedOption[] = [
   {
     name: 'es_simple_attr_sel[]',
     options: [
@@ -460,7 +455,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
- export const sixthItems: GroupedOption[] = [
+ const sixthItems: GroupedOption[] = [
   {
     name: 'es_simple_attr_sel[]',
     options: [
@@ -504,7 +499,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
- export const seventhItems: GroupedOption[] = [
+ const seventhItems: GroupedOption[] = [
   {
     name: 'es_simple_attr_sel[]',
     options: [
@@ -524,7 +519,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
- export const eighthItems: GroupedOption[] = [
+ const eighthItems: GroupedOption[] = [
   {
     name: 'es_option[]',
     options: [
@@ -546,7 +541,7 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
   }
  ];
 
- export const ninthItems: GroupedOption[] = [
+const ninthItems: GroupedOption[] = [
   {
     name: 'es_option[]',
     options: [
@@ -606,9 +601,9 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
       }
     ]
   }
- ];
+];
 
- export const tenthItems: GroupedOption[] = [
+const tenthItems: GroupedOption[] = [
   {
     name: 'es_option[]',
     options: [
@@ -628,9 +623,9 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
       }
     ]
   }
- ];
+];
 
- export const eleventhItems: GroupedOption[] = [
+const eleventhItems: GroupedOption[] = [
   {
     name: 'es_option[]',
     options: [
@@ -645,9 +640,9 @@ import type { DynForm, GroupedOption, SelectData } from "$lib/types";
       }
     ]
   }
- ];
+];
 
-const fmdata: DynForm = {
+export const fmdata: DynForm = {
   title: 'Form 1',
   action: '',
   sections: [
@@ -655,45 +650,53 @@ const fmdata: DynForm = {
       title: 'section1',
       questions: [
         {
+          type: 'select',
           name: 'heads',
           label: 'ヘッド',
           options: items,
           discount: 20
         },
         {
+          type: 'select',
           name: 'shafts',
           label: 'シャフト',
           options: secondItems,
           info:  'メモ：シャフトはセット割引に含まれません。'
         },
         {
+          type: 'select',
           name: 'grips',
           label: 'グリップ',
           options: thirdItems,
           info: 'メモ：シャフトはセット割引に含まれません。'
         },
         {
+          type: 'select',
           name: 'Kouhanpatsu',
           label: '高反発加工',
           options: fourthItems,
           discount: 20
         },
         {
+          type: 'select',
           name: 'TuneUp Repair Guide',
           label: 'TuneUp加工方法',
           options: fifthItems
         },
         {
+          type: 'select',
           name: 'Average Head Speed',
           label: '平均ヘッドスピード',
           options: sixthItems
         },
         {
+          type: 'select',
           name: 'Left/Right',
           label: '右用/左用',
           options: seventhItems
         },
         {
+          type: 'select',
           name: 'Black Face',
           label: 'ブラックフェース加工',
           options: eighthItems,
@@ -701,6 +704,7 @@ const fmdata: DynForm = {
           info: 'メモ：ブラックフェース加工はセット割引に含まれません。'
         },
         {
+          type: 'select',
           name: 'Counter-weight Options',
           label: 'カウンターウエイト (オプション)',
           options: ninthItems,
@@ -708,6 +712,7 @@ const fmdata: DynForm = {
           info: 'メモ：カウンターウエイトはセット割引に含まれません。'
         },
         {
+          type: 'select',
           name: 'Head and Sound Adjustment Options',
           label: 'ヘッド内調整・消音加工 (オプション加工)',
           options: tenthItems,
@@ -715,6 +720,7 @@ const fmdata: DynForm = {
           info: 'メモ：ヘッド内調整・消音加工はセット割引に含まれません。'
         },
         {
+          type: 'select',
           name: 'Club Assembly Charge',
           label: 'クラブ組み立て工賃',
           options: eleventhItems,

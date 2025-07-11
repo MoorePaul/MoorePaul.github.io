@@ -118,4 +118,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  .two-col div[data-select-viewport] {
+    @apply grid md:grid-cols-2;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+  }
 }

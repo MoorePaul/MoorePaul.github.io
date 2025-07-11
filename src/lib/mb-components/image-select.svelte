@@ -1,36 +1,46 @@
 <script lang="ts">
-	import type { GroupedOption } from '$lib/types';
+	import type { GroupedOption, Option } from '$lib/types';
   import * as Select from "$lib/components/ui/select/index.js";
 	import Label from '$lib/components/ui/label/label.svelte';
+	import { isGrouped } from '$lib/utils';
 
-	type Props = { items: GroupedOption[]; label?: string };
+	type Props = { items: GroupedOption[] | Option[]; label?: string };
 	const { items, label }: Props = $props();
 
   let sel1Val = $state("");
-  const sel1Content = $derived(items[0].options.find(i => i.value === sel1Val)?.label ?? 'Choose one');
+  const sel1Content = $derived((isGrouped(items) ? items[0].options.find(i => i.value === sel1Val)?.label : items[0].label) ?? 'Choose one');
 </script>
 
+<div class="flexx flexx-col">
 {#if label}
-  <Label class="mt-4">{label}</Label>
+  <Label class="mt-4 mb-1">{label}</Label>
 {/if}
+<div style="display: none" data-select-viewport>test</div>
 <Select.Root type="single" name="sel1" bind:value={sel1Val}>
-  <Select.Trigger class="w-[400px]">
+  <Select.Trigger class="w-full">
     {sel1Content}
   </Select.Trigger>
-  <Select.Content class="Content">
-    {#each items as item}
-      <Select.Group>
-        <Select.Label class="pt-4 text-pink-700 font-bold text-lg">{item.name}</Select.Label>
-        {#each item.options as option}
-        <Select.Item value={option.value} label={option.label}>
-          <div class="flex flex-col w-[300px]">
-            {option.label}
-            {#if option.image != null}
-              <img src={option.image} alt="" width="100%" height="auto"/>
-            {/if}
-          </div></Select.Item>
-        {/each}
-      </Select.Group>
-    {/each}
+  <Select.Content class="Content two-col">
+    {#if isGrouped(items)}
+      {#each items as item}
+        <Select.Group class="w-[calc(100cqw-64px)] md:w-[calc(50cqw-32px)]">
+          <Select.GroupHeading class="pt-4 text-pink-700 font-bold text-lg">{item.name}</Select.GroupHeading>
+          {#each item.options as option}
+          <Select.Item value={option.value} label={option.label} class="w-full">
+            <div>
+              {option.label}
+              {#if option.image != null}
+                <img src={option.image} alt="" width="100%" height="auto"/>
+              {/if}
+              {#if option.price != null}
+                {option.price}
+              {/if}
+            </div>
+          </Select.Item>
+          {/each}
+        </Select.Group>
+      {/each}
+    {/if}
   </Select.Content>
 </Select.Root>
+</div>
