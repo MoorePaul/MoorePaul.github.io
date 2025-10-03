@@ -6,6 +6,8 @@
 	import { isGrouped } from '$lib/utils';
 	import FormInput from '$lib/mb-components/form-input.svelte';
 
+  let qId = 0;
+
 	const hasImages = (options: GroupedOption[] | Option[]) => {
 		return isGrouped(options)
 			? options.some((optGrp) => optGrp.options.some((opt) => opt.image != null))
@@ -18,12 +20,12 @@
 		{#each section.questions as question}
 			{#if question.type === 'select'}
 				{#if hasImages(question.options)}
-					<ImageSelect label={question.label} items={question.options} />
+					<ImageSelect id={String(qId++)} label={question.label} items={question.options} info={question.info} />
 				{:else}
-					<SimpleSelect label={question.label} items={question.options} />
+					<SimpleSelect id={String(qId++)} label={question.label} items={question.options} />
 				{/if}
 			{:else if question.type === 'input'}
-				<FormInput label={question.label} />
+				<FormInput id={String(qId++)} label={question.label} />
 			{/if}
 		{/each}
 	{/each}
