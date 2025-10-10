@@ -652,7 +652,7 @@ export const fmdata: DynForm = {
         {
           type: 'select',
           name: 'heads',
-          label: 'ヘッド',
+          label: 'ヘッド - test',
           options: items,
           discount: 20
         },
