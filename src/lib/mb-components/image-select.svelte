@@ -28,7 +28,7 @@
 	{#if item}
 		{#if item.image}
 			<div class="grid">
-				<div>{item.label}</div>
+				<div class="text-red-400">{item.label}</div>
 				{#if item.image != null}<div class="px-4"><img src={item.image} alt="" width="100%" height="auto" /></div>{/if}
 				{#if item.price != null}<div>{item.price}</div>{/if}
 			</div>
