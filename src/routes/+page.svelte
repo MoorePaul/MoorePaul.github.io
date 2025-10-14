@@ -15,14 +15,14 @@
 	};
 </script>
 
-<div class="p-4 flex flex-col gap-4">
+<div class="p-4 grid grid-cols-[repeat(auto-fit,minmax(640px,1fr))] gap-4">
 	{#each fmdata.form.sections as section}
 		{#each section.questions as question}
 			{#if question.type === 'select'}
 				{#if hasImages(question.options)}
-					<ImageSelect id={String(qId++)} label={question.label} items={question.options} info={question.info} />
+					<ImageSelect id={String(qId++)} name={question.name} label={question.label} items={question.options} info={question.info} />
 				{:else}
-					<SimpleSelect id={String(qId++)} label={question.label} items={question.options} />
+					<SimpleSelect id={String(qId++)} name={question.name} label={question.label} items={question.options} />
 				{/if}
 			{:else if question.type === 'input'}
 				<FormInput id={String(qId++)} label={question.label} />

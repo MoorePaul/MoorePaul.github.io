@@ -5,36 +5,54 @@
 	import { isGrouped } from '$lib/utils';
 	import { fmdata } from '../../data/data.svelte';
 
-	type Props = { id?: string; items: GroupedOption[] | Option[]; label?: string; info?: string };
-	const { id, items, label, info }: Props = $props();
+	type Props = { id?: string; name: string; items: GroupedOption[] | Option[]; label?: string; info?: string };
+	const { id, items, label, info, name }: Props = $props();
 
 	let sel1Val = $state('');
 
 	const sel1Content = $derived((isGrouped(items)
-    ? items.flatMap((gp) => gp.options).find((opt) => opt.value === sel1Val)?.label
-    : items[0].label) ?? 'Choose one');
+    ? items.flatMap((gp) => gp.options).find((opt) => opt.value === sel1Val)
+    : items.find(opt => opt.value === sel1Val)));
 
 	const onValueChange = (val: string) => {
 		const selItem = isGrouped(items)
 			? items.flatMap((gp) => gp.options).find((opt) => opt.value === val)
-			: items[0];
+			: items.find(opt => opt.value === sel1Val);
 
 		console.log(`option changed`);
 		if (id != null) fmdata.options[id] = selItem;
 	};
 </script>
 
-<div class="flex flex-col gap-1">
+{#snippet triggerContent(item?: Option)}
+	{#if item}
+		{#if item.image}
+			<div class="grid">
+				<div>{item.label}</div>
+				{#if item.image != null}<div class="px-4"><img src={item.image} alt="" width="100%" height="auto" /></div>{/if}
+				{#if item.price != null}<div>{item.price}</div>{/if}
+			</div>
+		{:else}
+			<div class="grid grid-cols-[1fr_auto] w-full">
+				<div class="text-left">{item.label}</div>
+				{#if item.price != null}<div>{item.price}</div>{/if}
+			</div>
+		{/if}
+	{:else}
+		Choose one
+	{/if}
+{/snippet}
+
+<div class="grid grid-cols-1 gap-1">
 	{#if label}
 		<Label>{label}</Label>
 	{/if}
-	<div style="display: none" data-select-viewport>test</div>
-	<Select.Root type="single" name="sel1" bind:value={sel1Val} {onValueChange}>
-		<Select.Trigger class="w-full">{sel1Content}</Select.Trigger>
+	<Select.Root type="single" {name} bind:value={sel1Val} {onValueChange}>
+		<Select.Trigger class="w-full h-auto data-[size=sm]:h-auto data-[size=default]:h-auto">{@render triggerContent(sel1Content)}</Select.Trigger>
 		<Select.Content class="Content two-col">
 			{#if isGrouped(items)}
 				{#each items as item}
-					<Select.Group class="w-[calc(100cqw-64px)] md:w-[calc(50cqw-32px)]">
+					<Select.Group>
 						<Select.GroupHeading class="pt-4 text-pink-700 font-bold text-lg">{item.name}</Select.GroupHeading>
 						{#each item.options as option}
 							<Select.Item value={option.value} label={option.label} class="w-full">
@@ -46,6 +64,16 @@
 							</Select.Item>
 						{/each}
 					</Select.Group>
+				{/each}
+			{:else}
+				{#each items as option}
+					<Select.Item value={option.value} label={option.label} class="w-full">
+						<div>
+							{option.label}
+							{#if option.image != null}<img src={option.image} alt="" width="100%" height="auto" />{/if}
+							{#if option.price != null}{option.price}{/if}
+						</div>
+					</Select.Item>
 				{/each}
 			{/if}
 		</Select.Content>
