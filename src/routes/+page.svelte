@@ -15,7 +15,7 @@
 	};
 </script>
 
-<div class="p-4 grid grid-cols-[repeat(auto-fit,minmax(640px,1fr))] gap-4">
+<div class="p-4 grid grid-cols-[repeat(auto-fit,minmax(450px,1fr))] gap-4">
 	{#each fmdata.form.sections as section}
 		{#each section.questions as question}
 			{#if question.type === 'select'}

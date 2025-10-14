@@ -28,9 +28,9 @@
 	{#if item}
 		{#if item.image}
 			<div class="grid">
-				<div>{item.label}</div>
+				<div class="text-right">{item.label}</div>
 				{#if item.image != null}<div class="px-4"><img src={item.image} alt="" width="100%" height="auto" /></div>{/if}
-				{#if item.price != null}<div>{item.price}</div>{/if}
+				{#if item.price != null}<div class="text-right">{item.price}</div>{/if}
 			</div>
 		{:else}
 			<div class="grid grid-cols-[1fr_auto] w-full">
@@ -53,13 +53,13 @@
 			{#if isGrouped(items)}
 				{#each items as item}
 					<Select.Group>
-						<Select.GroupHeading class="pt-4 text-pink-700 font-bold text-lg">{item.name}</Select.GroupHeading>
+						<Select.GroupHeading class="pt-4 text-black-700 font-bold text-lg">{item.name}</Select.GroupHeading>
 						{#each item.options as option}
 							<Select.Item value={option.value} label={option.label} class="w-full">
 								<div>
 									{option.label}
 									{#if option.image != null}<img src={option.image} alt="" width="100%" height="auto" />{/if}
-									{#if option.price != null}{option.price}{/if}
+									{#if option.price != null}<div class="text-black-400 text-1xl">{option.price}</div>{/if}
 								</div>
 							</Select.Item>
 						{/each}
@@ -71,7 +71,7 @@
 						<div>
 							{option.label}
 							{#if option.image != null}<img src={option.image} alt="" width="100%" height="auto" />{/if}
-							{#if option.price != null}{option.price}{/if}
+							{#if option.price != null}<div class="text-black-400">{option.price}</div>{/if}
 						</div>
 					</Select.Item>
 				{/each}
