@@ -730,17 +730,20 @@ export const fmdata: DynForm = {
         {
           type: 'input',
           name: 'Name',
-          label: 'Name'
+          label: 'Name',
+          inputType: 'text'
         },
         {
           type: 'input',
           name: 'Email',
-          label: 'Email'
+          label: 'Email',
+          inputType: 'text'
         },
         {
           type: 'input',
           name: 'Phone-Number',
-          label: 'Phone Number'
+          label: 'Phone Number',
+          inputType: 'text'
         }
       ]
     }

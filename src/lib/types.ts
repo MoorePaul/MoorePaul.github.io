@@ -42,7 +42,9 @@ export type SelectData = {
 export type InputData = {
   type: 'input';
   name: string;
+  inputType: 'text' | 'hidden' | 'submit'
   label?: string;
   info?: string;
   rows?: number;
+  value?: string;
 };

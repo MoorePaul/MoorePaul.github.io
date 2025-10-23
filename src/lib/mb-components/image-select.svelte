@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Label from '$lib/components/ui/label/label.svelte';
 	import * as Select from '$lib/components/ui/select/index.js';
-	import type { GroupedOption, Option } from '$lib/types';
+	import type { Option, SelectData } from '$lib/types';
 	import { isGrouped } from '$lib/utils';
-	import { fmdata } from '../../data/data.svelte';
+	import { fmdata, updateOptionsTotal } from '../../data/data.svelte';
 
-	type Props = { id?: string; name: string; items: GroupedOption[] | Option[]; label?: string; info?: string };
-	const { id, items, label, info, name }: Props = $props();
+	type Props = { id?: string; question: SelectData};
+	const { id, question }: Props = $props();
+	const {options: items, label, name, info } = question;
 
 	let sel1Val = $state('');
 
@@ -15,12 +16,10 @@
     : items.find(opt => opt.value === sel1Val)));
 
 	const onValueChange = (val: string) => {
-		const selItem = isGrouped(items)
-			? items.flatMap((gp) => gp.options).find((opt) => opt.value === val)
-			: items.find(opt => opt.value === sel1Val);
-
-		console.log(`option changed`);
-		if (id != null) fmdata.options[id] = selItem;
+		if (id != null && sel1Content != null) {
+			fmdata.options[id] = { question, option: sel1Content};
+			updateOptionsTotal();
+		}
 	};
 </script>
 
