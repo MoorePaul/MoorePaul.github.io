@@ -7,6 +7,7 @@
   import FormInput from '$lib/mb-components/form-input.svelte';
   import Button from '$lib/components/ui/button/button.svelte';
   import * as Table from '$lib/components/ui/table';
+  import { Label } from 'formsnap';
 
   let qId = 0;
   let submitBtn = $derived(fmdata.form.sections.flatMap(s => s.questions).find(q => q.type === 'input' && q.inputType === 'submit')) as InputData;
@@ -45,25 +46,33 @@
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {#each Reflect.ownKeys(fmdata.options) as optId}
-            {@const selOpt = fmdata.options[Number(optId)]}
-            {#if selOpt}
-              <Table.Row>
-                <Table.Cell class="font-medium">{selOpt.question.label}</Table.Cell>
-                <Table.Cell class="font-medium">{selOpt.option.label}</Table.Cell>
-                <Table.Cell class="text-right">￥{selOpt.option.price ?? 0}</Table.Cell>
-              </Table.Row>
-            {/if}
+          {#each fmdata.form.sections as section}
+            {#each section.questions as question, qIndex}
+              {#if question.type === 'select'}
+                {@const selOpt = fmdata.options[Object.getOwnPropertyNames(fmdata.options).find(optName => fmdata.options[optName]?.question.name === question.name)!]}
+                <Table.Row>
+                  <Table.Cell class="font-medium">{question.label}</Table.Cell>
+                  <Table.Cell class="font-medium">
+                    {#if selOpt}
+                      {selOpt.option.label}
+                    {:else}
+                      — <!-- placeholder when no selection -->
+                    {/if}
+                  </Table.Cell>
+                  <Table.Cell class="text-right">
+                    ￥{selOpt?.option.price ?? 0}
+                  </Table.Cell>
+                </Table.Row>
+              {/if}
+            {/each}
           {/each}
         </Table.Body>
-        {#if Reflect.ownKeys(fmdata.options).length}
-          <Table.Footer>
-            <Table.Row>
-              <Table.Cell colspan={2}>Total</Table.Cell>
-              <Table.Cell class="text-right">￥{fmdata.optionsTotal}</Table.Cell>
-            </Table.Row>
-          </Table.Footer>
-        {/if}
+        <Table.Footer>
+          <Table.Row>
+            <Table.Cell colspan={2}>Total</Table.Cell>
+            <Table.Cell class="text-right">￥{fmdata.optionsTotal}</Table.Cell>
+          </Table.Row>
+        </Table.Footer>
       </Table.Root>
     </div>
   {/if}
